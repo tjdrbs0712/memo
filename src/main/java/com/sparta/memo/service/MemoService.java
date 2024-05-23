@@ -20,6 +20,7 @@ public class MemoService {
         this.memoRepository = memoRepository;
     }
 
+    //메모 DB 생성
     public MemoResponseDto createMemo(MemoRequestDto requestDto) {
         // RequestDto -> Entity
         Memo memo = new Memo(requestDto);
@@ -36,6 +37,7 @@ public class MemoService {
         return memoRepository.findAllByOrderByModifiedAtDesc().stream().map(MemoResponseDto::new).toList();
     }
 
+    //키워드로 메모 조회
     public List<MemoResponseDto> getMemosByKeyword(String keyword) {
         return memoRepository.findAllByContentsContainsOrderByModifiedAtDesc(keyword).stream().map(MemoResponseDto::new).toList();
     }
